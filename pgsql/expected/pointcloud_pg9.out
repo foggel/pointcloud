@@ -1,5 +1,8 @@
 set client_min_messages to ERROR;
-CREATE EXTENSION pointcloud;
+SET extra_float_digits = 0;
+CREATE SCHEMA pointcloudext;
+CREATE EXTENSION pointcloud SCHEMA pointcloudext;
+SET search_path TO pointcloudext;
 SELECT PC_Version();
  pc_version 
 ------------
@@ -238,7 +241,7 @@ CREATE TABLE IF NOT EXISTS pt_test (
     pt PCPOINT(1)
 );
 \d pt_test
-     Table "public.pt_test"
+    Table "pointcloudext.pt_test"
  Column |    Type    | Modifiers 
 --------+------------+-----------
  pt     | pcpoint(1) | 
@@ -305,7 +308,7 @@ CREATE TABLE IF NOT EXISTS pa_test (
     pa PCPATCH(1)
 );
 \d pa_test
-     Table "public.pa_test"
+     Table "pointcloudext.pa_test"
  Column |    Type    | Modifiers 
 --------+------------+-----------
  pa     | pcpatch(1) | 
@@ -377,7 +380,7 @@ CREATE TABLE IF NOT EXISTS pa_test_dim (
     pa PCPATCH(3)
 );
 \d pa_test_dim
-   Table "public.pa_test_dim"
+   Table "pointcloudext.pa_test_dim"
  Column |    Type    | Modifiers 
 --------+------------+-----------
  pa     | pcpatch(3) | 

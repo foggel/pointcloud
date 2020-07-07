@@ -1,0 +1,2 @@
+CREATE SCHEMA pp;
+CREATE EXTENSION "pointcloud_postgis" SCHEMA pp CASCADE;
