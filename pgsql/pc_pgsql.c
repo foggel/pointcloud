@@ -238,23 +238,23 @@ uint32 pcid_from_datum(Datum d)
 	return serpart->pcid;
 }
 
-static void 
+static void
 #if PGSQL_VERSION < 120
-set_pointcloud_extension_schema(FunctionCallInfoData* fcinfo)
+set_pointcloud_extension_schema(FunctionCallInfoData* fcinfo)$
 #else
 set_pointcloud_extension_schema(FunctionCallInfo fcinfo)
 #endif
 {
-    char *nsp_name;
-    Oid nsp_oid;
+	char *nsp_name;
+	Oid nsp_oid;
 
-    if (POINTCLOUD_SCHEMA) return;
-    
-    nsp_oid = get_func_namespace(fcinfo->flinfo->fn_oid);
-    if (!nsp_oid) return;
+	if (POINTCLOUD_SCHEMA) return;
 
-    nsp_name = get_namespace_name(nsp_oid);
-    POINTCLOUD_SCHEMA = MemoryContextStrdup(CacheMemoryContext, nsp_name);
+	nsp_oid = get_func_namespace(fcinfo->flinfo->fn_oid);
+	if (!nsp_oid) return;
+
+	nsp_name = get_namespace_name(nsp_oid);
+	POINTCLOUD_SCHEMA = MemoryContextStrdup(CacheMemoryContext, nsp_name);
 }
 
 PCSCHEMA *
@@ -265,7 +265,7 @@ pc_schema_from_pcid_uncached(uint32 pcid)
 	int err, srid;
 	size_t size;
 	PCSCHEMA *schema;
-    char *pointcloud_formats_fullpath = quote_qualified_identifier(POINTCLOUD_SCHEMA, POINTCLOUD_FORMATS);
+	char *pointcloud_formats_fullpath = quote_qualified_identifier(POINTCLOUD_SCHEMA, POINTCLOUD_FORMATS);
 
 	if (SPI_OK_CONNECT != SPI_connect ())
 	{
@@ -405,7 +405,7 @@ pc_schema_from_pcid(uint32 pcid, FunctionCallInfo fcinfo)
 	/* Not in there, load one the old-fashioned way. */
 	oldcontext = MemoryContextSwitchTo(fcinfo->flinfo->fn_mcxt);
 
-    set_pointcloud_extension_schema(fcinfo);
+	set_pointcloud_extension_schema(fcinfo);
 	schema = pc_schema_from_pcid_uncached(pcid);
 	MemoryContextSwitchTo(oldcontext);
 
