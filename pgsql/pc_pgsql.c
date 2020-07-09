@@ -240,7 +240,7 @@ uint32 pcid_from_datum(Datum d)
 
 static void
 #if PGSQL_VERSION < 120
-set_pointcloud_extension_schema(FunctionCallInfoData* fcinfo)$
+set_pointcloud_extension_schema(FunctionCallInfoData* fcinfo)
 #else
 set_pointcloud_extension_schema(FunctionCallInfo fcinfo)
 #endif
