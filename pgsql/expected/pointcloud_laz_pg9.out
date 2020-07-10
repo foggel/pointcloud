@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS pa_test_laz (
     pa PCPATCH(5)
 );
 \d pa_test_laz
-                          Table "pointcloudext.pa_test_laz"
+                       Table "pointcloudext.pa_test_laz"
  Column |    Type    |                        Modifiers                         
 --------+------------+----------------------------------------------------------
  id     | integer    | not null default nextval('pa_test_laz_id_seq'::regclass)
